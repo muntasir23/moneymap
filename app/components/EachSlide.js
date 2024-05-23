@@ -1,9 +1,6 @@
-import React from "react";
 
-export default function EachSlide({cata, budget, totalCost, persentage }) {
-  
-  const widthPersentage = Math.floor( (totalCost / budget) * 100);
-  console.log(widthPersentage);
+export default function EachSlide({ cata, budget, totalCost, persentage }) {
+  const widthPersentage = Math.floor((totalCost / budget) * 100);
 
   return (
     <div className="bg-gray-900 h-[120px] rounded p-3">
@@ -19,13 +16,11 @@ export default function EachSlide({cata, budget, totalCost, persentage }) {
         </p>
         {/* <p>{(totalCost / budget) * 100} </p> */}
       </div>
-      <p className="text-[10px] text-slate-100 mb-1">
-        {widthPersentage} %
-      </p>
+      <p className="text-[10px] text-slate-100 mb-1">{widthPersentage} %</p>
       <div className="w-[100%] h-[10px] bg-gray-700 rounded-[2px]">
         <div
-          className={ `h-[100%] bg-lime-300  rounded-[5px]`}
-          style={{width: widthPersentage + "%"}}
+          className={`h-[100%] bg-lime-300  rounded-[5px]`}
+          style={{ width: widthPersentage + "%" }}
         ></div>
       </div>
     </div>
