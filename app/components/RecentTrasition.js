@@ -9,7 +9,7 @@ export default function RecentTrasition() {
       </h1>
       <div className="mb-20">
         <EachTransition
-          costType="transport"
+          costType="transportation"
           date="12 jan 2024"
           description="Description of Transpotaion"
         />

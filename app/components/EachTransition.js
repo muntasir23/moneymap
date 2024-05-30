@@ -4,15 +4,15 @@ import { RiMoneyDollarBoxLine } from "react-icons/ri";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 
 export default function EachTransition({ costType, date, description }) {
-  if (costType === "transport") {
-    console.log("transport");
-  } else if (costType === "food") {
-    console.log("Food");
-  } else if (costType === "Bill Payment") {
-    console.log("Bill Payment");
-  } else if (costType === "Other") {
-    console.log("Other");
-  }
+  // if (costType === "transport") {
+  //   console.log("transport");
+  // } else if (costType === "food") {
+  //   console.log("Food");
+  // } else if (costType === "Bill Payment") {
+  //   console.log("Bill Payment");
+  // } else if (costType === "Other") {
+  //   console.log("Other");
+  // }
 
   return (
     <div className="mt-5 bg-zinc-200 p-2 rounded-sm shadow-md hover:shadow">
@@ -20,7 +20,7 @@ export default function EachTransition({ costType, date, description }) {
         <h1  className="flex justify-center items-center gap-2">
           <p className="rounded-full bg-gray-900 flex items-center justify-center text-lime-300 p-2">
            {
-            costType === "transport" && <BsTruckFront />
+            costType === "transportation" && <BsTruckFront />
            }
            {
             costType === "food" && <PiHamburger  />

@@ -22,6 +22,12 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+
+button:active{
+  transform: scale(0.96);
+}
+
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

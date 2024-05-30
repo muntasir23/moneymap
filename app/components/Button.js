@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function Button({ children }) {
   const [openModal, setOpenModal] = useState(true);
@@ -25,7 +25,7 @@ export default function Button({ children }) {
               <ul className="w-[100px] p-2">
                 <li className="bg-gray-700 w-[100%] rounded-sm mb-5">
                   <Link
-                    href="/"
+                    href="/budget"
                     className="text-zinc-100 text-[12px] hover:text-lime-300"
                   >
                     Budget
@@ -33,7 +33,7 @@ export default function Button({ children }) {
                 </li>
                 <li className="bg-gray-700 w-[100%] rounded-sm">
                   <Link
-                    href="/"
+                    href="/expense"
                     className="text-zinc-100 text-[12px] hover:text-lime-300"
                   >
                     Expense
