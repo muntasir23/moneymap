@@ -3,7 +3,7 @@ import { PiHamburger } from "react-icons/pi";
 import { RiMoneyDollarBoxLine } from "react-icons/ri";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 
-export default function EachTransition({ costType, date, description }) {
+export default function EachTransition({ costType, date, description, eachtransion }) {
   // if (costType === "transport") {
   //   console.log("transport");
   // } else if (costType === "food") {
@@ -20,26 +20,21 @@ export default function EachTransition({ costType, date, description }) {
         <h1  className="flex justify-center items-center gap-2">
           <p className="rounded-full bg-gray-900 flex items-center justify-center text-lime-300 p-2">
            {
-            costType === "transportation" && <BsTruckFront />
+            eachtransion.category === "Transpotation" && <BsTruckFront />
            }
            {
-            costType === "food" && <PiHamburger  />
+             eachtransion.category === "Food" && <PiHamburger  />
            }
            {
-            costType === "Bill Payment" && <FaMoneyBillTransfer  />
+             eachtransion.category === "Bill payment" && <FaMoneyBillTransfer  />
            }
            {
-            costType === "Other" && <RiMoneyDollarBoxLine  />
+             eachtransion.category === "Other" && <RiMoneyDollarBoxLine  />
            }
           </p>
-          <p className="font-semibold text-lime-700">{costType}</p>
+          <p className="font-semibold text-lime-700">{eachtransion.category}</p>
         </h1>
         <p className="text-gray-800 text-[12px]">
-           {date} 
+        {eachtransion.timestamp.toDate().toDateString()}
         </p>
-      </div>
-
-      <p className="text-gray-700 text-[14px]">{description}</p>
-    </div>
-  );
-}
+      </div>a
