@@ -21,7 +21,7 @@ export default function ProfilePage() {
   const now = new Date();
   let name = monthNames[now.getMonth()];
   return (
-    <div className="mb-20 w-[400px]">
+    <div className="mb-20 lg:w-[400px] w-full md:w-[400px]">
       <Profile />
 
       <div className="p-3">
@@ -45,7 +45,7 @@ export default function ProfilePage() {
             className="flex items-center justify-between gap-10 text-zinc-200 p-3"
           >
             <p>
-              All Transition amount of <strong>{name}</strong>
+              All Transition amount of <strong className="text-lime-300">{name}</strong>
             </p>
             <button className="text-[20px] text-lime-300">
               <FiArrowRightCircle />

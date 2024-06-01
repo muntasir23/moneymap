@@ -10,7 +10,7 @@ export default function Home() {
   console.log(budget);
 
   return (
-    <main className="w-[400px] p-3  ">
+    <main className="w-[400px] p-3 sm:w-full lg:w-[400px]">
       <Slider budget={budget} />
       <TotalTransitonToday />
       <RecentTrasition />

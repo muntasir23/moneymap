@@ -91,7 +91,7 @@ export default function ExpenseForm() {
       <div className="relative m-2 mb-5">
         <button
           onClick={handleExpenseSubmitBtn}
-          className="w-[280px] bg-lime-300 rounded font-bold text-gray-900 py-2.5"
+          className="w-[280px] bg-lime-300 rounded font-bold text-gray-900 py-2.5 -z-30"
         >
           {loading ? "Loading..." : "Submit"}
         </button>

@@ -5,10 +5,10 @@ import profileImage from "../../public/profile.jpg";
 
 export default function Profile() {
   return (
-    <div className="flex w-[400px] items-center justify-center">
+    <div className="flex w-full lg:w-[400px] md:w-[400px] items-center justify-center">
       <div className="mt-6 p-3 border rounded shadow bg-gray-900">
         <div className="h-[150px] w-[150px] rounded-full overflow-hidden border-[3px] border-gray-600 shadow">
-          <Image alt="" src={profileImage} />
+          <Image alt="" src={profileImage} placeholder="blur" />
         </div>
 
         <div className="mt-10">

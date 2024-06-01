@@ -1,7 +1,6 @@
 "use client";
-import { useState } from "react";
-import BudgetButton from "./BudgetButton";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { useState } from "react";
 import { db } from "../firebaseConfig";
 export default function BudgetForm() {
   const [weekly, setWeekly] = useState("");
@@ -84,7 +83,7 @@ export default function BudgetForm() {
       <div className="relative m-2 mb-5">
         <button
           onClick={handleBudgetSubmitBtn}
-          className="w-[280px] bg-lime-300 rounded font-bold text-gray-900 py-2.5"
+          className="w-[280px] bg-lime-300 rounded font-bold text-gray-900 py-2.5 -z-40"
         >
           {loading ? "Loading..." : "Submit"}
         </button>
