@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { fetchMonthlyExpense } from "../lib/fetchMonthlyExpenses";
+import GetTotalYearExpense from "./GetTotalYearExpense";
 
 const MonthlySummary = ({ year }) => {
   const [monthlyTotals, setMonthyTotals] = useState(Array(12).fill(0));
@@ -37,9 +38,13 @@ const MonthlySummary = ({ year }) => {
 
   return (
     <div className="mb-20">
-      <h1 className="text-zinc-200 text-[20px] mb-8 mt-5 bg-gray-900 p-2 rounded">
-        Monthly Expense Summary for <strong className="text-lime-300">{year}</strong>
-      </h1>
+      <div className="mb-8">
+        <h1 className="text-zinc-200 text-[20px] mb-8 mt-5 bg-gray-900 p-2 rounded">
+          Monthly Expense Summary for{" "}
+          <strong className="text-lime-300">{year}</strong>
+        </h1>
+        <GetTotalYearExpense />
+      </div>
       <table className="w-full rounded shadow-md">
         <thead className="bg-gray-300 ">
           <tr>
@@ -51,10 +56,13 @@ const MonthlySummary = ({ year }) => {
         <tbody className="bg-gray-900 border-b-2 border-gray-300">
           {monthlyTotals.map((total, index) => (
             <>
-              <tr key={index} className="[&>*:last-child]:text-gray-950 [&>*:last-child]:font-semibold   odd:bg-white even:bg-zinc-200">
+              <tr
+                key={index}
+                className="[&>*:last-child]:text-gray-950 [&>*:last-child]:font-semibold   odd:bg-white even:bg-zinc-200"
+              >
                 <td className="text-sm p-1">{index + 1}</td>
                 <td className="text-sm p-1">{monthNames[index]}</td>
-                <td className="text-sm p-1"> $ {total}</td>
+                <td className="text-sm p-1">৳{total}</td>
               </tr>
             </>
           ))}

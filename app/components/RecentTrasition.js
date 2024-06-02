@@ -21,7 +21,7 @@ export default function RecentTrasition() {
     const q = query(
       recentTransitionRef,
       orderBy("timestamp", "desc"),
-      limit(3)
+      limit(7)
     );
     onSnapshot(q, (snapshot) => {
       const recentTransition = snapshot.docs.map((doc) => ({
@@ -42,7 +42,7 @@ export default function RecentTrasition() {
       </h1>
       <div className="mb-20">
         {loading && (
-          <h2 className="text-lg text-green-500 text-center mt-10">
+          <h2 className="text-lg text-gray-900 text-center mt-10">
             Loading...
           </h2>
         )}

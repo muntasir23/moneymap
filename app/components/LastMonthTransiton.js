@@ -47,7 +47,7 @@ export default function LastMonthTransiton() {
       {loading && <h1 className="text-center mt-5">Loading...</h1>}
       {expenses.map((eachtransion) => (
         <>
-          <div>
+          <div key={eachtransion.id}>
             <EachTransition eachtransion={eachtransion} />
           </div>
         </>

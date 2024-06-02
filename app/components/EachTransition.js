@@ -25,7 +25,7 @@ export default function EachTransition({ eachtransion }) {
 
       <p className="text-gray-700 text-[14px]">{eachtransion.description}</p>
       <p className=" text-gray-950">
-        Cost: <strong className="text-"> $ {eachtransion.amount}</strong>
+        Cost: <strong className="text-red-500"> ৳{eachtransion.amount}</strong>
       </p>
     </div>
   );

@@ -9,14 +9,26 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Pagination } from "swiper/modules";
-import getBudget from "../lib/getBudget";
 import EachSlide from "./EachSlide";
+import useTotalOfMonth from "../lib/useTotalOfMonth";
+import useTotalOfYear from "../lib/useTotalOfYear";
+import useTotalOfWeek from "../lib/useTotalOfWeek";
+import useBudget from "../lib/useBudget";
+import useOneBudget from "../lib/useOneBudget";
 
 export default function App() {
 
-  const budget = getBudget()
-   
-  console.log(budget);
+  const {totalMonth} = useTotalOfMonth();
+  const {totalYear} = useTotalOfYear();
+  const {totalWeek} = useTotalOfWeek()
+
+  // const {budget} = useBudget();
+
+  const {weekly, monthly, yearly} = useOneBudget()
+
+  console.log("this is budget"+ weekly);
+
+
   return (
     <>
       <Swiper
@@ -36,8 +48,8 @@ export default function App() {
           <EachSlide
             slideN0="slide -1"
             cata="Weekly"
-            budget="1000"
-            totalCost="700"
+            budget={weekly}
+            totalCost={totalWeek}
             persentage="70"
           />
         </SwiperSlide>
@@ -45,8 +57,8 @@ export default function App() {
           <EachSlide
             slideN0="slide -2"
             cata="Monthly"
-            budget="30000"
-            totalCost="28000"
+            budget={monthly}
+            totalCost={totalMonth}
             persentage="70"
           />
         </SwiperSlide>
@@ -54,8 +66,8 @@ export default function App() {
           <EachSlide
             slideN0="slide -3"
             cata="Yearly"
-            budget="360000"
-            totalCost="280000"
+            budget={yearly}
+            totalCost={totalYear}
             persentage="40"
           />
         </SwiperSlide>
