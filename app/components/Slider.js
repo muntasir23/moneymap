@@ -30,7 +30,7 @@ export default function App() {
 
 
   return (
-    <>
+    <div className="z-500">
       <Swiper
         slidesPerView={"1.3"}
         spaceBetween={20}
@@ -43,6 +43,7 @@ export default function App() {
         }}
         modules={[Pagination]}
         className="mySwiper"
+        style={{zIndex:"-100000px"}}
       >
         <SwiperSlide>
           <EachSlide
@@ -72,6 +73,6 @@ export default function App() {
           />
         </SwiperSlide>
       </Swiper>
-    </>
+    </div>
   );
 }
