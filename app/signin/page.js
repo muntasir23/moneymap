@@ -62,6 +62,7 @@ export default function SignIn() {
               userId: currentUser.uid,
               createdAt: new Date(),
             });
+            alert("Done")
             setLoading(false);
           } catch (error) {
             console.log(error);
@@ -73,7 +74,6 @@ export default function SignIn() {
       setLoading(true);
       await signup(email, password, username);
       alert("Done");
-      redirect('/')
     } catch (err) {
       console.log(err);
       setError("Failed to create an account!");
