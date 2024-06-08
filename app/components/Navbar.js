@@ -77,7 +77,7 @@ export default function Navbar() {
                 <MdOutlineAccountCircle />
               </p>
             </Link>
-          <button onClick={logout} >logout</button>
+          <p onClick={logout} >logout</p>
           </>
         ) : (
           <div className="flex gap-2">
