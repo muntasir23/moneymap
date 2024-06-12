@@ -13,6 +13,7 @@ import { db } from "../firebaseConfig";
 import EachTransition from "./EachTransition";
 
 import { useAuth } from "../context/AuthContext";
+import { fetchRecentTransitons } from "../lib/fetchRecentTransitons";
 
 export default function RecentTrasition() {
   const [recentTransition, setRecentTransition] = useState([]);
@@ -22,22 +23,14 @@ export default function RecentTrasition() {
 
 
   useEffect(() => {
-    setLoading(true);
-    const recentTransitionRef = collection(db, "expense");
-    const q = query(
-      recentTransitionRef,
-      orderBy("timestamp", 'desc'),
-      limit(7),
-      where('mail', '==', currentUser.email)
-    );
-    onSnapshot(q, (snapshot) => {
-      const recentTransition = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setRecentTransition(recentTransition);
-      setLoading(false);
-    });
+    const fetchTransctions = async () =>{
+      if (currentUser) {
+        const fetchedTrasections = await fetchRecentTransitons(currentUser.email)
+        setRecentTransition(fetchedTrasections)
+      }
+      setLoading(false)
+    }
+    fetchTransctions()
   }, [currentUser]);
 
   console.log(recentTransition);
