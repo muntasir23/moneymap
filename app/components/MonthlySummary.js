@@ -1,15 +1,21 @@
 "use client";
 import { useEffect, useState } from "react";
-import { fetchMonthlyExpense } from "../lib/fetchMonthlyExpenses";
+import {
+  FetchMonthlyExpense,
+  fetchMonthlyExpense,
+} from "../lib/fetchMonthlyExpenses";
 import GetTotalYearExpense from "./GetTotalYearExpense";
+import { useAuth } from "../context/AuthContext";
 
 const MonthlySummary = ({ year }) => {
+  const { currentUser } = useAuth();
+
   const [monthlyTotals, setMonthyTotals] = useState(Array(12).fill(0));
   useEffect(() => {
     const fetchAllMonthyExpense = async () => {
       const totals = await Promise.all(
         Array.from({ length: 12 }, (_, month) =>
-          fetchMonthlyExpense(year, month)
+          fetchMonthlyExpense(year, month, currentUser.email)
         )
       );
 
@@ -19,7 +25,7 @@ const MonthlySummary = ({ year }) => {
       setMonthyTotals(monthlyTotals);
     };
     fetchAllMonthyExpense();
-  }, [year]);
+  }, [year, currentUser]);
 
   const monthNames = [
     "January",

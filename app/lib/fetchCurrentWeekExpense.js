@@ -1,7 +1,7 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
-export const fetchCurrentWeekExpense = async () => {
+export const fetchCurrentWeekExpense = async (mail) => {
   const now = new Date();
   const startOfWeek = new Date(now.setDate(now.getDate() - now.getDay()));
   startOfWeek.setHours(0, 0, 0, 0);
@@ -12,7 +12,8 @@ export const fetchCurrentWeekExpense = async () => {
   const expenseQuery = query(
     collection(db, "expense"),
     where("timestamp", ">=", startOfWeek),
-    where("timestamp", "<=", endOfWeek)
+    where("timestamp", "<=", endOfWeek),
+    where("mail", "==", mail)
   );
 
   const snapshot = await getDocs(expenseQuery);

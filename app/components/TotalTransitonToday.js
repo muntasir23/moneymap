@@ -1,10 +1,13 @@
 "use client";
 
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../firebaseConfig";
+import { useAuth } from "../context/AuthContext";
 export default function TotalTransitonToday() {
   const [todayTotal, setTodayTotal] = useState(0);
+
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     const fetchTodayTotalExpense = async () => {
@@ -23,7 +26,9 @@ export default function TotalTransitonToday() {
       const expenseQuery = query(
         collection(db, "expense"),
         where("timestamp", ">=", startOfDay),
-        where("timestamp", "<", endOfDay)
+        where("timestamp", "<", endOfDay),
+        where("mail", "==", currentUser.email),
+        // orderBy("timestamp", "desc"),
       );
 
       const snapshot = await getDocs(expenseQuery);
@@ -34,7 +39,7 @@ export default function TotalTransitonToday() {
       setTodayTotal(total);
     };
     fetchTodayTotalExpense();
-  }, []);
+  }, [currentUser]);
 
   return (
     <div className="mt-10 bg-red-600 p-2 rounded-sm shadow-md hover:shadow">

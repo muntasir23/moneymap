@@ -6,22 +6,29 @@ import {
   onSnapshot,
   orderBy,
   query,
+  where,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../firebaseConfig";
 import EachTransition from "./EachTransition";
 
+import { useAuth } from "../context/AuthContext";
+
 export default function RecentTrasition() {
   const [recentTransition, setRecentTransition] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const {currentUser} = useAuth()
+
 
   useEffect(() => {
     setLoading(true);
     const recentTransitionRef = collection(db, "expense");
     const q = query(
       recentTransitionRef,
-      orderBy("timestamp", "desc"),
-      limit(7)
+      orderBy("timestamp", 'desc'),
+      limit(7),
+      where('mail', '==', currentUser.email)
     );
     onSnapshot(q, (snapshot) => {
       const recentTransition = snapshot.docs.map((doc) => ({
@@ -31,7 +38,7 @@ export default function RecentTrasition() {
       setRecentTransition(recentTransition);
       setLoading(false);
     });
-  }, []);
+  }, [currentUser]);
 
   console.log(recentTransition);
 
@@ -46,6 +53,11 @@ export default function RecentTrasition() {
             Loading...
           </h2>
         )}
+        { !loading &&
+          recentTransition.length == 0 && <h1 className="text-lg font-bold text-gray-900 text-center mt-10">
+            There is no transition!
+          </h1>
+        }
         {recentTransition.map((eachtransion) => (
           <>
             <EachTransition

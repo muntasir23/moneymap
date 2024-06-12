@@ -2,6 +2,7 @@
 
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import { db } from "../firebaseConfig";
 
 export default function ExpenseForm() {
@@ -9,6 +10,14 @@ export default function ExpenseForm() {
   const [category, setCategory] = useState("");
   const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const { currentUser, logout } = useAuth()
+
+  console.log([{
+    name:currentUser.displayName,
+    id:currentUser.uid,
+    mail:currentUser.email
+  }]);
 
   const handleExpenseSubmitBtn = async () => {
     if (!category || !amount) {
@@ -23,6 +32,8 @@ export default function ExpenseForm() {
         category,
         amount: parseFloat(amount),
         timestamp: serverTimestamp(),
+        userId:currentUser.uid,
+        mail:currentUser.email
       });
       alert("Done");
       setDescripton("");

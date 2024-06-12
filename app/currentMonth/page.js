@@ -24,7 +24,7 @@ export default function CurrentMonth() {
   console.log(totalMonth);
  
   return (
-    <div className="w-[400px] p-3">
+    <div className="w-full p-3 sm:w-full lg:w-[400px]">
       <div>
       <h1 className="text-zinc-200 text-[20px] mb-8 mt-5 bg-gray-900 p-2 rounded">
         All expense of the month <strong className="text-lime-300">{name}</strong>

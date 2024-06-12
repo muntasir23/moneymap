@@ -1,12 +1,15 @@
 "use client";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import { db } from "../firebaseConfig";
 export default function BudgetForm() {
   const [weekly, setWeekly] = useState("");
   const [monthly, setMonthly] = useState("");
   const [yearly, setYearly] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const { currentUser, logout } = useAuth()
 
   const handleBudgetSubmitBtn = async () => {
     if (!weekly || !monthly || !yearly) {
@@ -21,6 +24,8 @@ export default function BudgetForm() {
         monthly: parseFloat(monthly),
         yearly: parseFloat(yearly),
         timestamp: serverTimestamp(),
+        userId:currentUser.uid,
+        mail:currentUser.email
       });
       alert("Done");
     } catch (error) {

@@ -7,7 +7,9 @@ import { LuHome } from "react-icons/lu";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { ImCross } from "react-icons/im";
 import Button from "./Button";
+import favIcon from '../../public/iconmoneymap.png'
 import { useAuth } from "../context/AuthContext";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,16 +61,21 @@ export default function Navbar() {
       )}
 
       <nav className="flex justify-between items-center px-3 py-3 fixed bottom-0 lg:w-[400px] z-100000000 bg-zinc-100 w-full md:w-[400px]">
-        <button onClick={modalOpen}>
-          <p className="w-[30px] h-[30px] rounded-full bg-gray-900 text-lime-300 flex justify-center items-center">
-            <FaPlus />
-          </p>
-        </button>
-        <Link href="/">
-          <p className="w-[70px] h-[30px] rounded bg-gray-900 text-lime-300 flex justify-center items-center">
-            <LuHome />
-          </p>
-        </Link>
+        {currentUser && (
+          <>
+            <button onClick={modalOpen}>
+              <p className="w-[30px] h-[30px] rounded-full bg-gray-900 text-lime-300 flex justify-center items-center">
+                <FaPlus />
+              </p>
+            </button>
+            <Link href="/">
+              <p className="w-[70px] h-[30px] rounded bg-gray-900 text-lime-300 flex justify-center items-center">
+                <LuHome />
+              </p>
+            </Link>
+          </>
+        )}
+
         {currentUser ? (
           <>
             {" "}
@@ -79,18 +86,19 @@ export default function Navbar() {
             </Link>
           </>
         ) : (
-          <div className="flex gap-2">
-             <Link href="/signin">
-              <p className="h-[30px] px-2 rounded bg-gray-900 text-lime-300 flex justify-center items-center">
+          <>
+            <Link href="/signin">
+              <p className="h-[30px] px-2 bg-zinc-200 rounded border-2 border-zinc-500 text-gray-900 flex justify-center items-center font-semibold">
                 Sign In
               </p>
             </Link>
-             <Link href="/login">
-              <p className="h-[30px] px-2 rounded bg-gray-900 text-lime-300 flex justify-center items-center">
+            <Image src={favIcon} alt="" className="w-[50px]" />
+            <Link href="/login">
+              <p className="h-[30px] px-2 bg-zinc-200 rounded border-2 border-zinc-500 text-gray-900 flex justify-center items-center font-semibold">
                 Log In
               </p>
             </Link>
-          </div>
+          </>
         )}
 
         {/* <Link href="/profile">
