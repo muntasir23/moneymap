@@ -84,6 +84,7 @@ export default function Navbar() {
                 <MdOutlineAccountCircle />
               </p>
             </Link>
+          <p onClick={logout} >logout</p>
           </>
         ) : (
           <>
